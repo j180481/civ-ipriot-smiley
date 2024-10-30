@@ -93,7 +93,7 @@ Address the following tasks and questions based on the code provided in this rep
 3. Run the project locally by executing the `main.py` file
 4. Evidence this by providing screenshots of the project directory structure and the output of the `main.py` file
 
-![Local Execution (INSERT YOUR SCREENSHOT)](screenshots/CREATE_A_SCREENSHOT_OF_YOUR_local_setup.png)
+![Local Execution (INSERT YOUR SCREENSHOT)](docs/Screenshots/screenshot_1.PNG)
 
 If you are running on a Raspberry Pi, you can use the following command to run the project and then screenshot the result:
 
@@ -108,68 +108,77 @@ python3 main.py
 
 1. Examine the code for the `smiley.py` file and provide  an example of a variable of each of the following types and their corresponding values (`_` should be replaced with the appropriate values):
 
-   | Type                    | name       | value          |
-   | ----------              | ---------- | -------------- |
-   | built-in primitive type | _          |  _             |
-   | built-in composite type | _          |  _             |
-   | user-defined type       | _          |  _             |
+   | Type                    | name  | value           |
+   | ----------              |-------|-----------------|
+   | built-in primitive type | dimmed | True            |
+   | built-in composite type | WHITE | (255, 255, 255) |
+   | user-defined type       | self.sense_hat      | SenseHat()      |
 
 2. Fill in (`_`) the following table based on the code in `smiley.py`:
 
-   | Object                   | Type                    |
-   | ------------             | ----------------------- |
-   | self.pixels              | _                       |
-   | A member of self.pixels  | _                       |
-   | self                     | _                       |
+   | Object                   | Type           |
+   | ------------             |----------------|
+   | self.pixels              | Composite type |
+   | A member of self.pixels  | Composite type |
+   | self                     | Smiley         |
 
 3. Examine the code for `smiley.py`, `sad.py`, and `happy.py`. Give an example of each of the following control structures using an example from **each** of these files. Include the first line and the line range:
 
-   | Control Flow | File       | First line  | Line range  |
-   | ------------ | ---------- | ----------- | ----------- |
-   |  sequence    |  _         | _           | _           |
-   |  selection   | _          | _           | _           |
-   |  iteration   | _          | _           | _           |
+   | Control Flow | File      | First line              | Line range |
+   | ------------ |-----------|-------------------------|------------|
+   |  sequence    | smiley.py | WHITE = (255, 255, 255) | 5 - 9      |
+   |  selection   | sad.py    | if wide_open:           | 26 - 29    |
+   |  iteration   | happy.py  | for pixel in mouth:     | 21 - 22    |
 
 4. Though everything in Python is an object, it is sometimes said to have four "primitive" types. Examining the three files `smiley.py`, `sad.py`, and `happy.py`, identify which of the following types are used in any of these files, and give an example of each (use an example from the code, if applicable, otherwise provide an example of your own):
 
-   | Type                    | Used? | Example |
-   | ----------------------- | ----- | --------|
-   | int                     | _     | _          |
-   | float                   | _     | _          |
-   | str                     | _     | _          |
-   | bool                    | _     | _          |
+   | Type  | Used? | Example                                                                     |
+   |-------|-------|-----------------------------------------------------------------------------|
+   | int   | Yes   | WHITE = (255, 255, 255) "the variable WHITE is a TUPLE which contains INTs" |
+   | float | Yes   | def blink(self, delay=0.25)                                                 |
+   | str   | No    | greeting = "hello"                                                          |
+   | bool  | Yes   | def dim_display(self, dimmed=True)                                          |
 
 5. Examining `smiley.py`, provide an example of a class variable and an instance variable (attribute). Explain **why** one is defined as a class variable and the other as an instance variable.
 
-> Your answer here
+> WHITE = (255, 255, 255) is a Class Variable | This is defined as a class variable because the variable is in the class body (not within a class method like init), this means the variable is defined when the class is defined and is shared among all instances of the class. Modifying the value of a class variable then, effects all each instance of the class variable. 
+
+>Y = self.YELLOW is an instance variable. |  An instance variables are set at initialization, or within the (__init__) method, when you create an instance of the class. It is generally expected then that the value of each instance can be unique to each instance since you can set this at every initialization, or we can change the variable without affecting other instanes.  
+> 
+> 
+> 
 >
 
 6. Examine `happy.py`, and identify the constructor (initializer) for the `Happy` class:
    1. What is the purpose of a constructor (in general) and this one (in particular)?
 
-   > Your answer here
-   >
+   > The purpose of a constructor is to define attributes when the instance is initialized.
+   > In the case of the constructor in class Happy; it will define an instance of the class that will inherit the attributes or the instance variables which Smiley or Blinkable have in their init methods. In this case, Blinkable has no init method, Happy will inherit them from Smiley (self.sense_hat which contains the SenseHat class and self.pixels which contains a list of tuples). 
 
    2. What statement(s) does it execute (consider the `super` call), and what is the result?
 
-   > Your answer here
+   > The constructor also includes "self.draw_mouth() and self.draw_eyes()" in sequence. Meaning that when an instance of this class is initialized, the two methods will be executed.
    >
 
 ### Code style
 
 1. What code style is used in the code? Is it likely to be the same as the code style used in the SenseHat? Give to reasons as to why/why not:
    
-> Your answer here
+> PEP8.
+> Yes, it is like likely the code style is the same in SenseHate. Firstly, in smiley.py ("self.sense_hat" | line: 13) the class name itself follows PEP8 protocol; "SenseHat" uses the CamelCase convention to imply the object is a class. Furthermore, staying within smiley.py, we can see two instances of self.sense_hat calling functions which also adhere to PEP8 naming styles. Examples, (line 33) we have "self.sense_hat.low_light" and (line 39) "self.sense_hate.set_pixels". Both the lines are calling functions which adhere to PEP8 protocols by keeping the words lowercase and seperated with underscores.
 >
 
 2. List three aspects of this convention you see applied in the code.
 
-> Your answer here
+> 1. In smiley.py (line range: 5 - 9) we can see in the class body of smiley a sequence of constants distinguished as such by their naming convention which is all uppercase.
+> 2. For the next example we can look at sad.py. (line: 15 | "mouth = [49, 54, 42, 43, 44, 45]") we can see looking at this example it follows PEP8 conventions by surrounding the "=" with a single white space.
+> 3. Lastly, lets look at happy.py. (line: 16 | "def draw_mouth(self)") we can see the same of this method follows PEP8 conventions by keeping the name in underscores and keeping words in the name serperated with an underscore.
 >
 
 3. Give two examples of organizational documentation in the code.
 
-> Your answer here
+> smiley.py (line: 12) uses a hash comment to describe what is happening in the init method "# We have encapsulated the SenseHat object"
+> Also, within smiley.py (line: 29 - 32), we have a docstring comment describing how the dim_display method works """" Set the SenseHat's light intensity to low (True) or high (False) :param dimmed: Dim the display if True, otherwise don't dim""""
 >
 
 ### Identifying and understanding classes
@@ -180,10 +189,13 @@ python3 main.py
   
   Use the following table for your answers:
 
-| Class Name | Super or Sub? | Direct parent(s) |
-| ---------- | ------------- | ---------------- |
-| NotReal    | Sub           | NotRealParent    |
-|   ...      |   ...         |      ...         |
+| Class Name | Super or Sub?                                               | Direct parent(s)   |
+|------------|-------------------------------------------------------------|--------------------|
+| NotReal    | Sub                                                         | NotRealParent      |
+| smiley     | super                                                       | none               |
+| blinkable  | sub class to ABC, superclass to those which inherit from it | ABC                |
+| sad        | sub                                                         | smiley             |
+| happy      | sub                                                         | smiley + blinkable |
 
 2. Explain the concept of abstraction, giving an example from the project (note "implementing an ABC" is **not** in itself an example of abstraction). (Max 150 words)
 
@@ -192,7 +204,7 @@ python3 main.py
 
 3. What is the name of the process of deriving from base classes? What is its purpose in this project? (Max 150 words)
 
-> Your answer here
+> The name of the process is called inheritance and the purpose within this project is code re-use.
 >
 
 ### Compare and contrast classes
