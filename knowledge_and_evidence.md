@@ -189,17 +189,17 @@ python3 main.py
   
   Use the following table for your answers:
 
-| Class Name | Super or Sub?                                               | Direct parent(s)   |
-|------------|-------------------------------------------------------------|--------------------|
-| NotReal    | Sub                                                         | NotRealParent      |
-| smiley     | super                                                       | none               |
-| blinkable  | sub class to ABC, superclass to those which inherit from it | ABC                |
-| sad        | sub                                                         | smiley             |
-| happy      | sub                                                         | smiley + blinkable |
+| Class Name | Super or Sub? | Direct parent(s)   |
+|------------|---------------|--------------------|
+| NotReal    | Sub           | NotRealParent      |
+| smiley     | super         | none               |
+| blinkable  | sub           | ABC                |
+| sad        | sub           | smiley             |
+| happy      | sub           | smiley + blinkable |
 
 2. Explain the concept of abstraction, giving an example from the project (note "implementing an ABC" is **not** in itself an example of abstraction). (Max 150 words)
 
-> Your answer here
+> Ultimately, the purpose of abstraction is to simplify/hide the internal working of the class but allow for flexibility. This often done by defining an abstract method. When subclass inherits from the abstract class or interface, it must implement concrete definitions of them. If we look at blinkable.py it inherits from the superclass (abc=abstract base class), and defines the method "blink" as an abstract method using a decorator "@abstractmethod". Which does contains no implementation but all sub-classes which inherit from blinkable must give this method implementation. 
 >
 
 3. What is the name of the process of deriving from base classes? What is its purpose in this project? (Max 150 words)
@@ -212,28 +212,28 @@ python3 main.py
 Compare and contrast the classes Happy and Sad.
 
 1. What is the key difference between the two classes?
-   > Your answer here
+   > sad does not import the time module, nor import or inherit from blinkable. It does not define a method called blink.
    >
 2. What are the key similarities?
-   > Your answer here
+   > Both sad and happy inherit from smiley. Both share two defined methods "draw_eyes" and "draw_mouth" with the same implementation
    >
 3. What difference stands out the most to you and why?
-   > Your answer here
+   > sad does not inherit from blinkable nor define a method called "blink". This stands out most to me because it is a key 
    >
 4. How does this difference affect the functionality of these classes
-   > Your answer here
+   > without sad inheriting the blink method from blinkable for implementation, in order for sad to achieve 
    >
 
 ### Where is the Sense(Hat) in the code?
 
 1. Which class(es) utilize the functionality of the SenseHat?
-   > Your answer here
+   > Smiley and Happy. Smiley imports the sense_hat class/module and then encapsulates it in an instance variable called self.sense_hat. self.sense_hat is used in the methods dim_display and show. The show method in then used in the implementation of the blink method in happy. 
    >
 2. Which of these classes directly interact with the SenseHat functionalities?
-   > Your answer here
+   > Smiley does but since SenseHat is encapsulated by being instance variable called self.sense_hat in the smiley class, and its functionality only being accessed from the methods definied in smiley, all classes which inherit from smiley interact only with the methods which are defined by smiley. Smiley can interact with SenseHat but happy and sad (if they inherit from smiley) cannot, they interact using methods from the parent class.
    >
 3. Discuss the hiding of the SenseHAT in terms of encapsulation (100-200 Words)
-   > Your answer here
+   > SenseHat is imported by smiley and then the SenseHat class(or module) is assigned to the instance variable self.sense_hat. This is in turn used in the methods defined in smiley called dim_display and show. When class inherits from smiley, they will interact with SenseHat only through the methods defined by smiley. They cannot change or alter anything or directly interface with SenseHat.
    >
 
 ### Sad Smileys Can’t Blink (Or Can They?)
@@ -244,22 +244,22 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
 
 1. Does the code's author believe that every `Smiley` should be able to blink? Explain.
 
-> Your answer here
+> No because smiley does not define an abstract method which it expects all the sub-classes derived from smiley to implement.
 >
 
 2. For those smileys that blink, does the author expect them to blink in the same way? Explain.
 
-> Your answer here
+> no, the method in happy for example is inherited from an abstract method and defined in smiley. The point of the abstract method is not to enforce how the child classes implement the abstract method but that they must implement it *somehow*. In the case of smiley we can clearly see that we can change the delay or even how many times it blinks (by using adding more uses of its methods like show or draw_eyes). So every smiley which may have a blink method is not expect them to blink the same 
 >
 
 3. Referring to the implementation of blink in the Happy and Sad Smiley classes, give a brief explanation of what polymorphism is.
 
-> Your answer here
+> Polymorphism refers to how we can implement something, for instance a method, across classes but potentially use it differently every time. In the case of blink, as previously mentioned, we can implement the abstract method "blink" differently in any class that has the method through either inheritance or implementing the same method across classes which are not linked.
 >
 
 4. How is inheritance used in the blink method, and why is it important for polymorphism?
 
-> Your answer here
+> Happy inherits the blink method from blinkable, but it is an abstract method and so must implement it within the method definition - meaning happy smiley implements what the blink method will do. This is important for polymorphism as it encourages the ability to use blink inherited from blinkable in many different ways. Happy smiley can implement blink in one way, sad smiley another, angry smiley another way again and so forth. 
 >
 1. **Implement Blink in Sad Class:**
 
@@ -278,11 +278,11 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
 
 Include a screenshot of the sad smiley or the modified `main.py`:
 
-![Sad Smiley Blinking](screenshots/sad_blinking.png)
+![Sad Smiley Blinking](docs/Screenshots/screenshot_2.PNG)
 
 - Observe and document the Sad smiley as it blinks its eyes. Describe any adjustments or issues encountered during implementation.
 
-  > Your answer here
+  > I had to import the time module in order for it to work like the happy smiley.
 
   ### If It Walks Like a Duck…
 
@@ -290,23 +290,23 @@ Include a screenshot of the sad smiley or the modified `main.py`:
 
   1. **Class Type Analysis:** What kind of class is `Blinkable`? Inspect its superclass for clues about its classification.
 
-     > Your answer here
+     > Abstract class 
 
   2. **Class Implementation:** `Blinkable` is a class intended to be implemented by other classes. What generic term describes this kind of class, which is designed for implementation by others? **Clue**: Notice the lack of any concrete implementation and the naming convention.
 
-  > Your answer here
+  > Interface 
 
   3. **OO Principle Identification:** Regarding your answer to question (2), which Object-Oriented (OO) principle does this represent? Choose from the following and justify your answer in 1-2 sentences: Abstraction, Polymorphism, Inheritance, Encapsulation.
 
-  > Your answer here
+  > Abstraction: Abstraction and interface are closely linked. Ultimately, abstraction is about hiding the more complicated details and saying an object must do this without must care about how it does it. An interface is like a blueprint of what the derivatives must do but allows them to be implements in their own way.
 
   4. **Implementation Flexibility:** Explain why you could grant the Sad Smiley a blinking feature similar to the Happy Smiley's implementation, even without directly using `Blinkable`.
 
-  > Your answer here
+  > Utilizing polymorphism. Inheritance is a big part of implementing polymorphism but not the only way. Outside of inheritance, we can define a method within a class with the same name of a method inherited by another class without the shared parent class and call them the same way but have them do different things (or the same things, depending on what you define in the method). 
 
   5. **Concept and Language Specificity:** In relation to your response to question (4), what is this capability known as, and why is it feasible in Python and many other dynamically typed languages but not in most statically typed programming languages like C#? **Clue** This concept is hinted at in the title of this section.
 
-  > Your answer here
+  > Duck typing. Simply this means that you can use the object and don't have to worry about what class it really is or caring about data type. Meaning as long as the class has the method you are calling it will work, even if how the method works differs from class to class. Duck typing is less feasible in static typed languages because they are more strict about checking and declaring data type.  
 
   ***
 
@@ -319,19 +319,19 @@ Include a screenshot of the sad smiley or the modified `main.py`:
   1. **Defined Colors and Their Location:**
 
      1. Which colors are defined and in which class(s)?
-        > Your answer here
+        > White, Green, Red, Yellow, Blank. They are defined in the class body of class smiley. 
      2. What type of variables hold these colors? Are the values expected to change during the program's execution? Explain your answer.
-        > Your answer here
+        > Constants. Constants are variables, usually indicated by all caps, which are expected  to remain as defined. 
      3. Add the color blue to the appropriate class using the appropriate format and values.
 
   2. **Usage of Color Variables:**
 
      1. In which classes are the color variables used?
-        > Your answer here
+        > smiley, happy and sad
 
   3. **Simple Method to Change Colors:**
   4. What is the easiest way you can think to change the smileys to green? Easiest, not necessarily the best!
-     > Your answer here
+     > Change "Y = self.YELLOW" in smiley to "Y = insert colour"
 
   Here's a revised version of the "Flexible Colors – Step 1" section for the smiley project, incorporating your specifications for formatting and content updates:
 

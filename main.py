@@ -8,8 +8,26 @@ from sad import Sad
 
 from happy import Happy
 
+from angry import Angry
+
 def main():
     smiley = Happy()
+
+    smiley.show()
+
+    time.sleep(1)
+
+    smiley.blink()
+
+    smiley = Sad()
+
+    smiley.show()
+
+    time.sleep(1)
+
+    smiley.blink()
+
+    smiley =  Angry()
 
     smiley.show()
 
