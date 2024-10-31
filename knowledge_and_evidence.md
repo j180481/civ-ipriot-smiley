@@ -93,6 +93,7 @@ Address the following tasks and questions based on the code provided in this rep
 3. Run the project locally by executing the `main.py` file
 4. Evidence this by providing screenshots of the project directory structure and the output of the `main.py` file
 
+![Local Execution (INSERT YOUR SCREENSHOT)](docs/Screenshots/screen1111.PNG)
 ![Local Execution (INSERT YOUR SCREENSHOT)](docs/Screenshots/screenshot_1.PNG)
 
 If you are running on a Raspberry Pi, you can use the following command to run the project and then screenshot the result:
@@ -126,7 +127,7 @@ python3 main.py
 
    | Control Flow | File      | First line              | Line range |
    | ------------ |-----------|-------------------------|------------|
-   |  sequence    | smiley.py | WHITE = (255, 255, 255) | 5 - 9      |
+   |  sequence    | smiley.py | self.sense_hat = SenseHat() | 13 - 29    |
    |  selection   | sad.py    | if wide_open:           | 26 - 29    |
    |  iteration   | happy.py  | for pixel in mouth:     | 21 - 22    |
 
@@ -218,7 +219,7 @@ Compare and contrast the classes Happy and Sad.
    > Both sad and happy inherit from smiley. Both share two defined methods "draw_eyes" and "draw_mouth" with the same implementation
    >
 3. What difference stands out the most to you and why?
-   > sad does not inherit from blinkable nor define a method called "blink". This stands out most to me because it is a key 
+   > sad does not inherit from blinkable nor define a method called "blink". This stands out most to me because it is a key piece of functionality which happy is able to do but sad cannot. 
    >
 4. How does this difference affect the functionality of these classes
    > without sad inheriting the blink method from blinkable for implementation, in order for sad to achieve 
